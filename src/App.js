@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import useLocalStorage from './hooks/useLocalStorage';
 
-import { AuthContext } from './context/AuthContext';
+import { AuthProvider } from './context/AuthContext';
 
 import Header from './components/Header';
 import WelcomePage from './components/WelcomPage/WelcomePage';
@@ -14,30 +14,30 @@ import RegisterPage from './components/RegisterPage/RegisterPage';
 import LoginPage from './components/LoginPage/LoginPage';
 import LogoutPage from './components/LogoutPage/LogoutPage';
 import ProfilePage from './components/ProfilePage/ProfilePage';
-import { login, logout } from './services/authService';
+// import { login, logout } from './services/authService';
    
 
-const initialState = {
-  email: '',
-  _id: '',   
-  accessToken: '', 
-};
+// const initialState = {
+//   email: '',
+//   _id: '',   
+//   accessToken: '', 
+// };
 
 function App() {
 
-  const [user , setUser ] = useLocalStorage ('user', initialState )
+  // const [user , setUser ] = useLocalStorage ('user', initialState )
 
-  const login = (authData) => {
-    setUser (authData);
-  }; 
+  // const login = (authData) => {
+  //   setUser (authData);
+  // }; 
 
-  const logout = () => {
-    // TODO: logout
-    setUser(initialState);
-  };
+  // const logout = () => {
+  //   // TODO: logout
+  //   setUser(initialState);
+  // };
 
   return (
-    <AuthContext.Provider value={{user,  login, logout}}>
+    <AuthProvider>
       <div id="container">
 
         <Header />
@@ -61,7 +61,7 @@ function App() {
           </div>
         </footer>
       </div>
-    </AuthContext.Provider>
+    </AuthProvider>
   );
 }
 
