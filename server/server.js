@@ -1321,6 +1321,8 @@
     var protectedData = {
         users: {
             "35c62d76-8152-4626-8712-eeb96381bea8": {
+                userPic: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMoIngXmT6e3Z3_beN-iew3UuOB9S8r1-frg&s',
+                name: 'Peter Petrov',
                 email: "peter@abv.bg",
                 hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1"
             },

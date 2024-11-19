@@ -1,5 +1,3 @@
-import { useContext } from "react";
-
 import { Link } from "react-router-dom";
 
 import { useAuth } from "../../context/AuthContext";
@@ -16,7 +14,7 @@ const Header = () => {
     )
     let userNavigation = ( 
         <>
-        <h1>Welcome, {user.email}</h1>
+        <h1>Welcome, {user.name}</h1>
             <li><Link to="/profile-page">Profile</Link></li>
             <li><Link to="create-page">Create Event</Link></li>
             <li><Link to="/logout">Logout</Link></li>

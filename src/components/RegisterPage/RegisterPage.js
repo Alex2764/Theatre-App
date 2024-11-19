@@ -11,9 +11,9 @@ const RegisterPage = () => {
 
      const registerSubmitHandler = (e) => {
         e.preventDefault(); 
-        let { email, password } = Object.fromEntries(new FormData(e.currentTarget));
+        let { name, userPic, email, password } = Object.fromEntries(new FormData(e.currentTarget));
         
-        authService.register(email, password)
+        authService.register(name, userPic, email, password)
             .then(authData => {
                 
                 login(authData);
@@ -26,6 +26,17 @@ const RegisterPage = () => {
         <section id="registerPage">
             <form className="registerForm" method="POST" onSubmit={registerSubmitHandler }>
                 <h2>Register</h2>
+
+                <div className="on-dark">
+                    <label htmlFor="userPic">Name:</label>
+                    <input id="userPic" name="userPic" type="text" placeholder="URL" />
+                </div>
+
+                <div className="on-dark">
+                    <label htmlFor="name">Name:</label>
+                    <input id="name" name="name" type="text" placeholder="name" />
+                </div>
+
                 <div className="on-dark">
                     <label htmlFor="email">Email:</label>
                     <input id="email" name="email" type="text" placeholder="steven@abv.bg" />

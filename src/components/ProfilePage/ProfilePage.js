@@ -1,14 +1,19 @@
-const ProfilePage = ({
-    username,
-}) => {
+import { useAuth } from "../../context/AuthContext";
+
+const ProfilePage = () => {
+
+    const { user } = useAuth();
+
     return (
         <section id="profilePage">
+
             <div className="userInfo">
                 <div className="avatar">
-                    <img src="./images/profilePic.png" />
+                    <img src={user.userPic}/>
                 </div>
-                <h2>{username}</h2>
+                <h2>{user.name}</h2>
             </div>
+
             <div className="board">
                 <div className="eventBoard">
                     <div className="event-info">
@@ -23,6 +28,7 @@ const ProfilePage = ({
                     <p>This user has no events yet!</p>
                 </div>
             </div>
+
         </section>
     );
 };
