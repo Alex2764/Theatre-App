@@ -1,7 +1,5 @@
 import './App.css';
-import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import useLocalStorage from './hooks/useLocalStorage';
 
 import { AuthProvider } from './context/AuthContext';
 
@@ -14,27 +12,8 @@ import RegisterPage from './components/RegisterPage/RegisterPage';
 import LoginPage from './components/LoginPage/LoginPage';
 import LogoutPage from './components/LogoutPage/LogoutPage';
 import ProfilePage from './components/ProfilePage/ProfilePage';
-// import { login, logout } from './services/authService';
-   
-
-// const initialState = {
-//   email: '',
-//   _id: '',   
-//   accessToken: '', 
-// };
 
 function App() {
-
-  // const [user , setUser ] = useLocalStorage ('user', initialState )
-
-  // const login = (authData) => {
-  //   setUser (authData);
-  // }; 
-
-  // const logout = () => {
-  //   // TODO: logout
-  //   setUser(initialState);
-  // };
 
   return (
     <AuthProvider>
@@ -55,11 +34,6 @@ function App() {
           </Routes>
         </main>
 
-        <footer>
-          <div>© 2021
-            <h3>JS Application</h3>
-          </div>
-        </footer>
       </div>
     </AuthProvider>
   );

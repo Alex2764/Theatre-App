@@ -2,10 +2,11 @@ import { useContext } from "react";
 
 import { Link } from "react-router-dom";
 
-import { AuthContext } from "../../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
 const Header = () => {
-    const { user  } = useContext(AuthContext); 
+    // TODO: Create custom hook for user info
+    const { user  } = useAuth(); 
 
     let guestNavigation = (
         <>
