@@ -1,82 +1,90 @@
-import { useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import { useTheatre } from "../../context/TheatreContext";
 import * as authService from '../../services/authService';
 
-
-import { AuthContext } from "../../context/AuthContext";
-
+/**
+ * DetailPage Component
+ * Отговаря за показването на детайлите за конкретен театър и предоставя опции за редактиране и изтриване.
+ */
 const DetailPage = () => {
-
     const navigate = useNavigate();
-
-    const { user } = useContext(AuthContext);
-    const [theatres, setTheatre] = useState({});
-
+    const { user } = useAuth();
+    const { currentTheatre, loadTheatre } = useTheatre();
+    const theater = currentTheatre;
+    
     const { theatreId } = useParams();
+    
+
+    /**
+     * useEffect Hook
+     * Зарежда данните за театъра при промяна на theatreId.
+     */
 
     useEffect(() => {
-        authService.getOne(theatreId)
-            .then(result => {
+        loadTheatre(theatreId); 
+    }, [theatreId, loadTheatre]);
 
-                setTheatre(result);
-            }) 
-    }, []);
 
-    const deleteHandler = () => {
-        authService.destroy(theatreId, user.accessToken)
-        .then(() => { 
-            navigate('/')
-        });
-    }; 
 
-    const editHandler = () => {
-
+    /**
+     * deleteHandler Function
+     * Отговаря за изтриване на театър и пренасочване към началната страница.
+     */
+    const deleteHandler = async () => {
+        try {
+            await authService.destroy(theater._id, user.accessToken);
+            navigate("/");
+        } catch (error) {
+            console.error("Failed to delete theatre:", error);
+        }
     };
 
-    const ownerbuttons = (
+
+    /**
+     * ownerButtons JSX
+     * Кнопки за собственика на театъра (редактиране и изтриване).
+     */
+    const ownerButtons = (
         <>
-            <Link className="btn-edit" to="edit" onClick={editHandler}>Edit</Link>
-            <a className="btn-delete" href="#" onClick={deleteHandler}>Delete</a>
-        </>
-    );
-    
-    const userButton = (
-        <>
-            <a className="btn-like" href="#">Like</a> 
+            <button onClick={() => navigate(`/edit`)} className="btn-edit">Edit</button>
+            <button onClick={deleteHandler} className="btn-delete">Delete</button>
         </>
     );
 
+
+     /**
+     * userButton JSX
+     * Кнопка за харесване, налична за обикновени потребители.
+     */
+    const userButton = (
+        <button className="btn-like">Like</button>
+    );
+    
+
+    // Връщане на JSX за страницата
     return (
         <section id="detailsPage">
             <div id="detailsBox">
-                <div className="detailsInfo">
-                    <h1>Title: {theatres.title}</h1>
-                    <div>
-                        <img src={theatres.imageUrl} alt={theatres.title} />
-                    </div>
+                <h1>Title: {theater.title}</h1>
+                <img    src={theater.imageUrl}
+                        alt={theater.title}
+                        style={{
+                            width: '90px',
+                        }}
+                 />
+                <p>{theater.description}</p>
+                <div className="buttons">
+                    {user?._id === theater._ownerId ? ownerButtons : userButton}
                 </div>
-
-                <div className="details">
-                    <h3>Theater Description</h3>
-                    <p>{theatres.description}</p>
-                    <p>...</p>
-                    <div className="buttons">
-                        {user._id && (user._id == theatres._ownerId
-                         ?   ownerbuttons
-                          :  userButton    
-                        )}
-                        <a className="btn-like" href="#">
+                <a className="btn-like" href="#">
                             <img 
                                 style={{
                                     width: '40px',
                                 }}
                                 src="https://www.freeiconspng.com/uploads/heart-icon-valentine-2.png"/>
                         </a>
-                        <span>Likes: {theatres.likes?.length}</span>
-
-                    </div>
-                </div>
             </div>
         </section>
     );

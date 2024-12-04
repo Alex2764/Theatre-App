@@ -1,10 +1,10 @@
 import * as authService from '../../services/authService';
-import { useState ,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import TheatreCard from '../TheatreCard/TheatreCard';
 
 
 const  WelcomePage = () => {
-    const [tehatre, setTheatre] = useState([]);
+    const [theatre, setTheatre] = useState([]);
 
     useEffect(()=>{
         authService.theatresData()
@@ -32,8 +32,8 @@ const  WelcomePage = () => {
             <div id="events">
                 <h1>Future Events</h1>
                 <div className="theaters-container">
-                   {tehatre.length > 0 
-                        ? tehatre.map(x =>
+                   {theatre.length > 0 
+                        ? theatre.map(x =>
                             <TheatreCard
                                 key={x._id}
                                 tehatre={x}

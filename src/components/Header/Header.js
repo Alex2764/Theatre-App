@@ -29,6 +29,7 @@ const Header = () => {
                     ? userNavigation
                     : guestNavigation
                     }
+                    <li><Link to="/private-page">PrivatePage</Link></li>
                 </ul>
             </nav>
         </header>

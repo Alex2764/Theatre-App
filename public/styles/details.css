@@ -30,18 +30,25 @@ div.details {
     box-shadow: 2px 10px 1.5em 5px black;
     text-align:center;
     display: flex;
+    flex-direction: column;
     max-width: 40em;
     min-width: 15em;
     background-color: rgba(255, 255, 255, 0.904);
     border-radius: 1rem;
     margin: 3em auto;
     padding: 1em;
+    text-align: center;
 }
 
 #detailsBox > h1 {
     margin-bottom: 0.5em;
     font-size: 2em;
     display: flex;
+    justify-content: center;
+}
+
+#detailsBox > p {
+    font-size: 15px;
 }
 
 .detailsInfo img {
@@ -56,6 +63,7 @@ div.details {
     font-size: 12px;
     display: flex;
 }
+
 
 .btn-delete, .btn-edit, .btn-like {
     margin: 1em 0.5em;

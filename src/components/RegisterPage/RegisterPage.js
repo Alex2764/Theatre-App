@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import * as authService from '../../services/authService';
 import { AuthContext  } from '../../context/AuthContext';
@@ -28,7 +28,7 @@ const RegisterPage = () => {
                 <h2>Register</h2>
 
                 <div className="on-dark">
-                    <label htmlFor="userPic">Name:</label>
+                    <label htmlFor="userPic">Profile Picture:</label>
                     <input id="userPic" name="userPic" type="text" placeholder="URL" />
                 </div>
 
@@ -55,7 +55,7 @@ const RegisterPage = () => {
                 <button className="btn" type="submit">Register</button>
 
                 <p className="field">
-                    <span>If you have profile click <a href="#">here</a></span>
+                    <span>If you have profile click <Link to="/login">here</Link></span>
                 </p>
             </form>
         </section>

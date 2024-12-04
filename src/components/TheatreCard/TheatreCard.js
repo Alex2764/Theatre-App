@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
 
-const TheatreCard = ({tehatre }) => {
+const TheatreCard = ({ tehatre: theatre }) => {
     return (
         <div className="eventsInfo">
             <div className="home-image">
-                <img src={tehatre.imageUrl} />
+                <img src={theatre.imageUrl} />
             </div>
             <div className="info">
-                <h4 className="title">{tehatre.title}</h4>
-                <h6 className="date">{tehatre.date}</h6>
-                <h6 className="author">{tehatre.author}</h6>
+                <h4 className="title">{theatre.title}</h4>
+                <h6 className="date">{theatre.date}</h6>
+                <h6 className="author">{theatre.author}</h6>
                 <div className="info-buttons">
-                    <Link className="btn-details" to={`theaters/${tehatre._id}`}>Details</Link>
+                    <Link className="btn-details" to={`/theaters/${theatre._id}`}>Details</Link>
                 </div>
             </div>
         </div>
